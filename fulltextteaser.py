@@ -4,7 +4,7 @@ from lxml import html
 import requests
 import json
 from pprint import pprint
-
+'''
 class TextTeaser:
     url = None
     title = None
@@ -12,8 +12,13 @@ class TextTeaser:
 
     def __init__(self,url):
         self.url = url
+'''
 
+with open('sciencebase_output.json') as json_file:
+    data = json.load(json_file)
+    pprint(data[5]["abstractCount"])
 
+'''
 def tt(inputUrl):
     with open('finaltest2.json') as data_file:
         data = json.load(data_file)
@@ -48,3 +53,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+'''

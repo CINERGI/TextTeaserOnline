@@ -1,4 +1,4 @@
-
+'''
 import argparse
 from lxml import html
 import requests
@@ -42,3 +42,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+'''
