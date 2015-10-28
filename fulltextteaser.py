@@ -1,10 +1,11 @@
-
+#from __future__ import print_function
 import argparse
 from lxml import html
 import requests
 import json
 from pprint import pprint
-'''
+
+
 class TextTeaser:
     url = None
     title = None
@@ -12,23 +13,39 @@ class TextTeaser:
 
     def __init__(self,url):
         self.url = url
-'''
 
-with open('sciencebase_output.json') as json_file:
+# NOABSTRACT = {'None', '0', 'Null'}
+
+with open('sciencebase.json') as json_file:
     data = json.load(json_file)
-    pprint(data[5]["abstractCount"])
+    #stuff = data[1]["abstractCount"]
+    #pprint(stuff)
+
+    #current having issues where it does not find the null objects
+    count = 0
+    while (count < 5):
+        curAbstract = data[count]["abstractCount"]
+        if curAbstract is None:
+            pprint('----------')
+            print('The count is:', count)
+            pprint(data[count]["abstractCount"])
+            #pprint(data[count]["otherLinks"])
+            count = count + 1
+        else:
+            break
 
 '''
 def tt(inputUrl):
+
     with open('finaltest2.json') as data_file:
         data = json.load(data_file)
         newinputurl = data["otherlinks"]
 
-    # baseurl= 'http://www.textteaser.com/summary?url='
-    # inputUrl = 'http://databasin.org/datasets/57060da0c5aa4d54a8870795153996fe'
     baseurl= 'http://www.textteaser.com/summary?url='
+    inputUrl = 'http://databasin.org/datasets/57060da0c5aa4d54a8870795153996fe'
+    #baseurl= 'http://www.textteaser.com/summary?url='
     #inputUrl = 'http://www.azgs.az.gov'
-    inputUrl = newinputurl
+    #inputUrl = newinputurl
     aUrl = baseurl + inputUrl
     page = requests.get(aUrl)
     tree = html.fromstring(page.text)
