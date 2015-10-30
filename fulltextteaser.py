@@ -5,7 +5,6 @@ import requests
 import json
 from pprint import pprint
 
-
 class TextTeaser:
     url = None
     title = None
@@ -16,10 +15,10 @@ class TextTeaser:
 
 # NOABSTRACT = {'None', '0'}
 
-num_lines = sum(1 for line in open('databib.json'))
+num_lines = sum(1 for line in open('sciencebase.json'))
 print ("Number of lines in file:",num_lines )
 
-with open('databib.json') as json_file:
+with open('sciencebase.json') as json_file:
     data = json.load(json_file)
     #stuff = data[1]["abstractCount"]
     #pprint(stuff)
