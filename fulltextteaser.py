@@ -14,25 +14,28 @@ class TextTeaser:
     def __init__(self,url):
         self.url = url
 
-# NOABSTRACT = {'None', '0', 'Null'}
+# NOABSTRACT = {'None', '0'}
 
-with open('sciencebase.json') as json_file:
+num_lines = sum(1 for line in open('databib.json'))
+print ("Number of lines in file:",num_lines )
+
+with open('databib.json') as json_file:
     data = json.load(json_file)
     #stuff = data[1]["abstractCount"]
     #pprint(stuff)
-
-    #current having issues where it does not find the null objects
+    #for line in data:
     count = 0
-    while (count < 5):
-        curAbstract = data[count]["abstractCount"]
-        if curAbstract is None:
-            pprint('----------')
-            print('The count is:', count)
-            pprint(data[count]["abstractCount"])
-            #pprint(data[count]["otherLinks"])
-            count = count + 1
-        else:
-            break
+    urlcount = 0
+    while count < num_lines:
+        if data[count]["abstractCount"]:
+            if data[count]["abstractCount"] != "0":
+                curAbstract = data[count]["abstractCount"]
+                #print('The count is:', count)
+                if data[count]["otherLinks"]:
+                    pprint(data[count]["otherLinks"])
+                    urlcount = urlcount + 1
+                    #print('urlcount is:', urlcount)
+        count = count + 1
 
 '''
 def tt(inputUrl):
